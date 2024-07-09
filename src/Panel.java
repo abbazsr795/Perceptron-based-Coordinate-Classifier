@@ -65,10 +65,17 @@ public class Panel extends JPanel{
         }
     }
 
-    public void predictLabel(Point p){
+    public void predictLabel(Point p, Graphics g){
         double result = (mapToScreenX(p.x) * weights[0]) + (mapToScreenY(p.y) * weights[1]) + (BIAS*weights[2]);
         p.prediction = sign(result);
         p.error = p.label - p.prediction;
+        if (p.error != 0){
+            g.setColor(Color.red);
+            g.fillOval(mapToScreenX(p.x),mapToScreenY(p.y),10,10 );
+        }else{
+            g.setColor(Color.green);
+            g.fillOval(mapToScreenX(p.x),mapToScreenY(p.y),10,10 );
+        }
     }
 
     public int drawTrainedFunction(int x){
@@ -89,10 +96,11 @@ public class Panel extends JPanel{
 
         //Draws the points
         for(int i = 0; i < points.length; i++){
+            g.setColor(Color.white);
             if(points[i].label == 1){
-                g.setColor(Color.green);
+                g.fillRect(mapToScreenX(points[i].x),mapToScreenY(points[i].y),10,10 );
             }else{
-                g.setColor(Color.cyan);
+                g.fillOval(mapToScreenX(points[i].x),mapToScreenY(points[i].y),10,10 );
             }
             g.fillOval(mapToScreenX(points[i].x),mapToScreenY(points[i].y),10,10 );
         }
@@ -105,7 +113,7 @@ public class Panel extends JPanel{
 
         for(int i = 0; i < points.length; i++){
 
-            predictLabel(points[i]);
+            predictLabel(points[i], g);
 
             weights[0] += mapToScreenX(points[i].x) * LearningRate * points[i].error;
             weights[1] += mapToScreenY(points[i].y) * LearningRate * points[i].error;
