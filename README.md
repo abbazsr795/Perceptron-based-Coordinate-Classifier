@@ -1,5 +1,5 @@
 # Perceptron-based Coordinate Classifier
-This Java project implements a Perceptron algorithm to classify whether a given point lies above or below a predefined linear boundary defined by the equation y=mx+c with zero machine learning frameworks. The classifier is trained using a set of labeled coordinates, and it predicts the position of new coordinates relative to the line.
+This Java project implements a Perceptron algorithm to classify whether a given point lies above or below a predefined linear boundary defined by the equation y=mx+c with zero machine learning frameworks. The classifier is trained using a set of labeled coordinates, and it predicts the class of new coordinates relative to the line.
 ## Features
 - Perceptron Training: Implements the Perceptron learning algorithm to adjust weights based on training data.
 - Random Weight Initialization: Initializes weights randomly within a specified range.
